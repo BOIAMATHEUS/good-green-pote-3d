@@ -1,0 +1,13 @@
+Good Green · pote 225 g em 3D (22/10/2026)
+
+Abrir: duplo clique em "Abrir visualizador.cmd" (abre http://127.0.0.1:8897).
+Tambem aparece em "Abrir todos os 3D.cmd", grupo Good Green.
+- pote Ø 90 x 115 mm (proporcao do mockup do Alison; 9x9x16 deixava o rotulo pequeno); rotulo na faca do Alison (289 x 85 mm, raio 3,5), emenda de 6,3 mm por baixo.
+- texturas rotulo-faca-gg-01..04.png = export 4x do Figma (pagina Rotulo, frames "Rotulo C · faca 289 x 85 mm"), sem guias e sem sangria. GG-02 a 04 sao exemplos de linha.
+
+O que e:
+
+Rotulo mudou no Figma? Exportar de novo os PNG (mesmo nome) e recarregar a pagina.
+- 22/10: pote na cor da foto do fornecedor (#1D4535, alto brilho), tampa alta e reta. Fundo do rotulo da faca = mesma cor (variavel cor/verde-pote no Figma).
+- Emenda: os primeiros 6,3 mm da arte (sem texto) ficam por baixo do fim do rotulo.
+- Verniz localizado so no Good Green da marca d'agua: verniz-mascara-gg-0X.png e verniz-rugosidade-gg-0X.png vem das 4 "Chapas de verniz" do Figma (uma por produto; tudo que e impresso por cima fica vazado, com folga). O resto do rotulo e acetinado.
