@@ -32,12 +32,14 @@ const PRODUTOS = [
 ];
 
 const scene = new T.Scene(), camera = new T.PerspectiveCamera(24, W() / H(), .005, 6);
-const renderer = new T.WebGLRenderer({antialias: true, powerPreference: 'high-performance'});
+// ?giro=gg-01 grava uma volta de 360° com fundo transparente (vídeo dos cards da home, como na Seed)
+const GIRO = new URLSearchParams(location.search).get('giro');
+const renderer = new T.WebGLRenderer({antialias: true, alpha: !!GIRO, preserveDrawingBuffer: !!GIRO, powerPreference: 'high-performance'});
 renderer.setPixelRatio(2); renderer.setSize(W(), H());
 renderer.outputColorSpace = T.SRGBColorSpace; renderer.toneMapping = T.NeutralToneMapping; renderer.toneMappingExposure = 1;
 stage.append(renderer.domElement);
 
-fundo(scene);
+if (!GIRO) fundo(scene);
 luzes(scene);
 // ambiente de softboxes para o brilho acetinado do plastico e do rotulo
 const room = new T.Scene(); room.background = new T.Color(.3, .29, .27);
@@ -171,7 +173,16 @@ document.querySelector('#save').onclick = () => {
   renderer.setPixelRatio(pr); renderer.setSize(W(), H()); dirty = true;
 };
 
+if (GIRO) {
+  document.body.classList.add('capture'); renderer.setClearColor(0x000000, 0); document.documentElement.style.background = document.body.style.background = 'transparent';
+  await mostra(PRODUTOS.find(p => p.id === GIRO) || PRODUTOS[0]);
+  camera.position.set(0, ALTURA * .55, .36); controls.target.set(0, ALTURA * .5, 0); controls.update();
+  window.giroQuadro = i => {                       // i = 0..N-1 gira o PRODUTO (a luz fica parada, como num estúdio)
+    produto.rotation.y = -i / window.giroN * Math.PI * 2; renderer.render(scene, camera); return true; };
+  window.giroN = 192; document.querySelector('#status').hidden = true; window.giroPronto = true;
+} else {
 await mostra(PRODUTOS[0]);
 for (const p of PRODUTOS.slice(1)) textura(p);
 document.querySelector('#status').hidden = true;
 requestAnimationFrame(loop);
+}
